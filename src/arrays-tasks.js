@@ -542,8 +542,8 @@ function propagateItemsByPositionIndex(arr) {
  */
 function shiftArray(arr, n) {
   if (arr.length === 0) return [];
-
-  const shift = ((n % arr.length) + arr.length) % arr.length; // нормализуем n
+  // shift is part from the end of array that should be moved to the begining of array
+  const shift = n < 0 ? arr.length + n : n;
   return arr.slice(-shift).concat(arr.slice(0, -shift));
 }
 
@@ -574,7 +574,7 @@ function sortDigitNamesByNumericOrder(arr) {
     'eight',
     'nine',
   ];
-  return arr.slice().sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  return arr.sort((a, b) => order.indexOf(a) - order.indexOf(b));
 }
 
 /**
